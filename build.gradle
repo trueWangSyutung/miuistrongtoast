@@ -1,0 +1,40 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+id 'com.android.application' version '8.2.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+
+}
+
+
+
+gradlePlugin {
+    plugins {
+        // 声明插件信息，这里的 hello 名字随意
+        hello {
+            // 插件ID
+            id = 'kg.edu.yjut.hyperos.miuistrongtoast'
+            // 插件的实现类
+            implementationClass = 'kg.edu.yjut.litenote.miuiStringToast.MiuiStrongToast'
+        }
+    }
+}
+
+
+
+publishing {
+    publications {
+        // 这里的 hello 可以任意命名
+        hello(MavenPublication) {
+            // 插件的组ID，建议设置为插件的包名
+            groupId =  'kg.edu.yjut.hyperos.miuistrongtoast'
+            // 翻译过来是 工件ID，我的理解是插件的名字
+            artifactId = 'miuistrongtoast_third'
+            version = '1.0.1'
+            // 组件类型，我们的插件其实就是Java组件
+            from components.java
+        }
+    }
+}
+
